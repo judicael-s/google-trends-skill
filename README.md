@@ -1,12 +1,12 @@
-# Google Trends Skill for Claude Code
+# Google Trends Scraper & Analyzer
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python 3.9+](https://img.shields.io/badge/Python-3.9+-green.svg)](https://www.python.org/downloads/)
 [![Playwright](https://img.shields.io/badge/Playwright-Chromium-orange.svg)](https://playwright.dev/python/)
 
-A Claude Code skill that scrapes and analyzes real Google Trends data using a Playwright-based browser scraper. No API keys, no accounts, completely free.
+Scrape and analyze real Google Trends data using a Playwright-based browser automation. No API keys, no accounts, completely free.
 
-Ask Claude about search trends, keyword popularity, seasonal interest, regional data, or compare how popular different search terms are — and it will scrape live data from Google Trends and deliver actionable analysis.
+Get interest-over-time scores, regional breakdowns, and multi-keyword comparisons — output as clean JSON ready for any pipeline, script, or AI assistant.
 
 ## How It Works
 
@@ -17,7 +17,6 @@ The scraper launches a headless Chromium browser, navigates to Google Trends, an
 ### Prerequisites
 
 - **Python 3.9+** — [Download](https://www.python.org/downloads/) (check "Add to PATH" during install)
-- **Claude Code** — [Get started](https://docs.anthropic.com/en/docs/claude-code/overview)
 
 ### Step 1: Install Playwright
 
@@ -35,42 +34,24 @@ playwright install chromium
 
 </details>
 
-### Step 2: Install the Skill
-
-Copy this repo into your Claude Code skills directory:
+### Step 2: Clone the Repo
 
 ```bash
-# Clone the repo
 git clone https://github.com/judicael-s/google-trends-skill.git
-
-# Copy to Claude Code skills directory
-cp -r google-trends-skill ~/.claude/skills/google-trends
+cd google-trends-skill
 ```
-
-Or manually copy the `SKILL.md` and `scripts/` folder to `~/.claude/skills/google-trends/`.
 
 ### Step 3: Verify
 
 ```bash
-python ~/.claude/skills/google-trends/scripts/scraper.py "test" --geo US --outdir /tmp/trends-test
+python scripts/scraper.py "test" --geo US --outdir /tmp/trends-test
 ```
 
 If you see `Saved: ...` lines, you're good to go.
 
 ## Usage
 
-Once installed, just ask Claude naturally:
-
-- *"What's trending for AI tools in the US?"*
-- *"Compare React vs Vue vs Angular popularity"*
-- *"How does interest in 'home gym' change throughout the year?"*
-- *"What are people searching for about remote work in France?"*
-
-Claude will automatically invoke the skill, scrape the data, and deliver a structured analysis.
-
-### Direct Scraper Usage
-
-You can also run the scraper directly:
+### CLI
 
 ```bash
 # Single keyword
@@ -134,7 +115,7 @@ Each entry in `default.geoMapData[]`:
 
 ## Analysis Framework
 
-When invoked through Claude Code, the skill analyzes data across six dimensions:
+When used with an AI assistant, the data supports analysis across six dimensions:
 
 1. **Trend Direction** — Growing, declining, stable, or cyclical
 2. **Momentum** — Recent data points vs period average
@@ -142,6 +123,24 @@ When invoked through Claude Code, the skill analyzes data across six dimensions:
 4. **Seasonality** — Repeating patterns (e.g., "home gym" spikes every January)
 5. **Geographic Hotspots** — Top regions by interest
 6. **Comparison** (multi-keyword) — Which leads, where they swap, convergence/divergence
+
+## Use as a Claude Code Skill
+
+This repo includes a `SKILL.md` file that turns it into a [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) skill with a full 4-phase workflow (parse, scrape, analyze, recommend).
+
+```bash
+# Copy to Claude Code skills directory
+cp -r google-trends-skill ~/.claude/skills/google-trends
+```
+
+Once installed, just ask Claude naturally:
+
+- *"What's trending for AI tools in the US?"*
+- *"Compare React vs Vue vs Angular popularity"*
+- *"How does interest in 'home gym' change throughout the year?"*
+- *"What are people searching for about remote work in France?"*
+
+Claude will automatically invoke the scraper, analyze the data, and deliver a structured report with recommendations.
 
 ## Limitations
 
@@ -156,9 +155,9 @@ When invoked through Claude Code, the skill analyzes data across six dimensions:
 The scraper is based on the open-source work by **[Bright Data](https://brightdata.com/)** (formerly Luminati Networks):
 
 - **Original repo:** [luminati-io/google-trends-api](https://github.com/luminati-io/google-trends-api)
-- **Enhanced with:** CLI arguments, retry logic, structured JSON output, and Claude Code skill integration
+- **Enhanced with:** CLI arguments, retry logic, structured JSON output, and AI skill integration
 
-Bright Data provides web data infrastructure and maintains the original Google Trends scraping approach. This skill builds on their work with modifications for local CLI usage and AI-assisted analysis.
+Bright Data provides web data infrastructure and maintains the original Google Trends scraping approach. This project builds on their work with modifications for local CLI usage and AI-assisted analysis.
 
 ## License
 
@@ -166,7 +165,7 @@ MIT — see [LICENSE](LICENSE)
 
 ## Part of the Marketing Suite
 
-This skill is part of a collection of Claude Code skills for marketing intelligence:
+This tool is part of a collection for marketing intelligence:
 
 - **[google-trends-skill](https://github.com/judicael-s/google-trends-skill)** — Search trend analysis (this repo)
 - **[google-analytics-skill](https://github.com/judicael-s/google-analytics-skill)** — GA4 reporting & audience insights
