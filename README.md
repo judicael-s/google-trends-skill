@@ -170,3 +170,4 @@ This tool is part of a collection for marketing intelligence:
 - **[google-trends-skill](https://github.com/judicael-s/google-trends-skill)** — Search trend analysis (this repo)
 - **[google-analytics-skill](https://github.com/judicael-s/google-analytics-skill)** — GA4 reporting & audience insights
 - **[google-search-console-skill](https://github.com/judicael-s/google-search-console-skill)** — SEO performance & query analysis
+- **[copywriting-skill](https://github.com/judicael-s/copywriting-skill)** — Copywriting toolkit (English, French, social media, tone of voice)
